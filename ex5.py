@@ -4,64 +4,6 @@
 from random import randint, random
 from math import tanh
 
-# Implémentation poids équipes
-# ------------------------------------------------------------------------------------------------- #
-
-
-def liste_classement_équipes():
-    """
-    Ouvre le fichier classement_équipes.csv et retourne un dictionnaire.
-
-    Returns
-    -------
-    dict
-        Dictionnaire contenant la valeur de chaques équipes.
-    """
-    with open("classement_équipes.csv", "r", encoding="utf8") as f:
-        l = [[line.strip().split(",")[0], float(line.strip().split(",")[1])]
-             for line in f]
-        return {k: v for k, v in l}
-
-
-def match_phase_final_v2(A, B, affichage=False):
-    """
-    Choisi un gagnant entre deux équipes
-
-    Parameters
-    ----------
-    A : str
-        Equipe A.
-    B : str
-        Equipe B.
-    affichage : bool, optional
-                Affiche la probabilité de gagné de l'équipe. 
-                Le défaut est False.
-
-    Returns
-    -------
-    str 
-        Retourne l'équipe qui a gagnée.
-    """
-    l = liste_classement_équipes()
-    rating_A = l[A]
-    rating_B = l[B]
-
-    coeff = 25
-    diff = (rating_B - rating_A) / coeff
-    proba_A = (1 - tanh(diff)) / 2
-    proba_B = 1 - proba_A
-    r = random()
-
-    if r > proba_B:
-        if affichage:
-            print(f"`{A} à gagné avec un proba de {proba_A} contre {B}")
-        return f"{A},gagné,{B},perdu"
-    else:
-        if affichage:
-            print(f"{B} à gagné avec un proba de {proba_B} contre {A}")
-        return f"{A},perdu,{B},gagné"
-# ------------------------------------------------------------------------------------------------ #
-
 
 def match_phase_final(équipe_1, équipe_2):
     """
@@ -166,7 +108,7 @@ def phase_finale(phase_précédente, phase_suivante):
 
         with open(phase_suivante, "a", encoding="utf8") as fichié_phase_final:
             fichié_phase_final.write(
-                f"{match_phase_final_v2(équipe_1, équipe_2)}\n")
+                f"{match_phase_final(équipe_1, équipe_2)}\n")
 
 
 def huitième():
@@ -179,7 +121,7 @@ def huitième():
 
         with open(r"Phase Final\résultats_huitièmes.csv", "a", encoding="utf8") as fichié_huitième:
             fichié_huitième.write(
-                f"{match_phase_final_v2(équipe_1, équipe_2)}\n")
+                f"{match_phase_final(équipe_1, équipe_2)}\n")
 
 
 def quart():
@@ -205,7 +147,7 @@ def petite_finale():
 
         with open(r"Phase Final\résultats_3e_place.csv", "a", encoding="utf8") as fichié_3e:
             fichié_3e.write(
-                f"{match_phase_final_v2(équipe_1, équipe_2)}\n")
+                f"{match_phase_final(équipe_1, équipe_2)}\n")
 
 
 def finale():
