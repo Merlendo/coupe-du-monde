@@ -6,12 +6,12 @@ import os
 
 def resultat_match(L):
     """
-    Prend ligne de résultat match et retourne les statistiques du match pour les deux équipes. 
+    Prends la ligne de résultat match et retournent les statistiques du match pour les deux équipes. 
 
     Parameters
     ----------
     L : list
-        Prend en paramètre une ligne de resultat de match.
+        Prends en paramètre une ligne de resultat de match.
 
     Returns
     -------
@@ -40,7 +40,7 @@ def resultat_match(L):
 def comptage_points_groupe():
     """
     Créer un fichier de type points_groupe_lettregroupe.csv.
-    Ces fichiers contiennes : Nom équipe, nombre de points, différence de buts, nombre de but
+    Ces fichiers contiennent : Nom équipe, nombre de points, différence de buts, nombre de but
 
     Returns
     -------
