@@ -108,6 +108,7 @@ def afficher_classement():
     print("Deuxième :", deuxième)
     print("Troisième :", troisième)
 
+    
 def main():
     
     try:
