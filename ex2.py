@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from random import randint
 import os
+from ex5 import match
 
 
 def match_phase_groupe():
@@ -29,6 +29,18 @@ def match_phase_groupe():
             for e in liste_groupe:
                 for e2 in liste_groupe:
                     if e > e2:
-                        score_1 = randint(0, 3)
-                        score_2 = randint(0, 3)
+                        
+                        score_1 = 0
+                        score_2 = 0
+                        
+                        # Utilise la fonction match pour générer des buts
+                        for _ in range(3):
+                            probabilité_but_e1 = match(e, e2)
+                            if probabilité_but_e1 == e:
+                                score_1 += 1
+                
+                            probabilité_but_e2 = match(e, e2)
+                            if probabilité_but_e2 == e2:
+                                score_2 += 1
+                                
                         fichier_matchs.write(f"{e},{score_1},{e2},{score_2}\n")
