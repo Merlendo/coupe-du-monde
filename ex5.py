@@ -23,28 +23,28 @@ def liste_classement_équipes():
         return {k: v for k, v in l}
 
 
-def match_phase_final_v2(A, B, affichage=False):
+def match(A, B, affichage=False):
     """
-    Choisi un gagnant entre deux équipes
-
-    Parameters
-    ----------
-    A : str
-        Equipe A.
-    B : str
-        Equipe B.
-    affichage : bool, optional
-                Affiche la probabilité de gagné de l'équipe. 
-                Le défaut est False.
-
-    Returns
-    -------
-    str 
-        Retourne l'équipe qui a gagnée.
-    """
-    l = liste_classement_équipes()
-    rating_A = l[A]
-    rating_B = l[B]
+     Choisi un gagnant entre deux équipes
+   
+     Parameters
+     ----------
+     A : str
+         Equipe A.
+     B : str
+         Equipe B.
+     affichage : bool, optional
+                 Affiche la probabilité de gagné de l'équipe. 
+                 Le défaut est False.
+   
+     Returns
+     -------
+     str 
+         Retourne l'équipe qui a gagnée.
+     """
+    d = liste_classement_équipes()
+    rating_A = d[A]
+    rating_B = d[B]
 
     coeff = 25
     diff = (rating_B - rating_A) / coeff
@@ -55,10 +55,27 @@ def match_phase_final_v2(A, B, affichage=False):
     if r > proba_B:
         if affichage:
             print(f"`{A} à gagné avec un proba de {proba_A} contre {B}")
-        return f"{A},gagné,{B},perdu"
+        return A
     else:
         if affichage:
             print(f"{B} à gagné avec un proba de {proba_B} contre {A}")
+        return B
+    
+    
+def match_phase_final_v2(A, B):
+    """
+    Match en phase finales
+
+    Returns
+    -------
+    str 
+        Retourne une fstring de l''
+    """
+    équipes_gagnate = match(A, B)
+    
+    if équipes_gagnate == A:
+        return f"{A},gagné,{B},perdu"
+    else:
         return f"{A},perdu,{B},gagné"
 # ------------------------------------------------------------------------------------------------ #
 
@@ -151,12 +168,44 @@ def liste_huitième_triée():
 
 
 def liste_phase_final(résultat_csv):
+    """
+    Lie un fichier csv et retourne une liste des équipes qualifiés 
+
+    Parameters
+    ----------
+    résultat_csv : str
+                   Nom du fichier csv.
+
+    Returns
+    -------
+    list
+        Listes des équipes qualifiés.
+    équipes : list
+        Liste des lignes du fichier csv.
+
+    """
     with open(résultat_csv, "r", encoding="utf8") as fichier_qualifié:
         équipes = [line.strip().split(",") for line in fichier_qualifié]
     return [équipe_résultat(e, "gagné") for e in équipes], équipes
 
 
 def phase_finale(phase_précédente, phase_suivante):
+    """
+    Prend le fichier csv de la phase présédente et créer le fichier csv   de la phase suivante
+    
+    Parameters
+    ----------
+    phase_précédente : str
+                       Nom fichier csv phase précédente.
+    phase_suivante : str
+                     Nom fichier csv phase précédente.
+.
+
+    Returns
+    -------
+    None.
+
+    """
     équipes = liste_phase_final(phase_précédente)[0]
     taille = len(équipes)
 
@@ -170,6 +219,14 @@ def phase_finale(phase_précédente, phase_suivante):
 
 
 def huitième():
+    """
+    Créer le fichier csv des huitièmes de finale
+
+    Returns
+    -------
+    None.
+
+    """
     équipes = liste_huitième_triée()
     taille = len(équipes)
 
@@ -183,16 +240,40 @@ def huitième():
 
 
 def quart():
+    """
+    Créer le fichier csv des quarts de finale
+
+    Returns
+    -------
+    None.
+
+    """
     phase_finale(r"Phase Final\résultats_huitièmes.csv",
                  r"Phase Final\résultats_quart.csv")
 
 
 def demi():
+    """
+    Créer le fichier csv des demis de finale
+
+    Returns
+    -------
+    None.
+
+    """
     phase_finale(r"Phase Final\résultats_quart.csv",
                  r"Phase Final\résultats_demi.csv")
 
 
 def petite_finale():
+    """
+    Créer le fichier csv de la petite finale
+
+    Returns
+    -------
+    None.
+
+    """
     with open(r"Phase Final\résultats_demi.csv", "r", encoding="utf8") as fichier_non_qualifié:
         équipes = [line.strip().split(",") for line in fichier_non_qualifié]
 
@@ -209,5 +290,13 @@ def petite_finale():
 
 
 def finale():
+    """
+    Créer le fichier csv de la finale
+
+    Returns
+    -------
+    None.
+
+    """
     phase_finale(r"Phase Final\résultats_demi.csv",
                  r"Phase Final\résultats_finale.csv")
