@@ -32,24 +32,25 @@ def match(A, B, affichage=False):
      B : str
          Equipe B.
      affichage : bool, optional
-                 Affiche la probabilité de gagné de l'équipe. 
+                 Affiche la probabilité de gagner de l'équipe. 
                  Le défaut est False.
    
      Returns
      -------
      str 
-         Retourne l'équipe qui a gagnée.
+         Retourne l'équipe qui a gagné.
      """
     d = liste_classement_équipes()
     rating_A = d[A]
     rating_B = d[B]
 
+    # Coefficient ajusté à la main pour que la probabilité ne soit pas trop proche de 1
     coeff = 25
     diff = (rating_B - rating_A) / coeff
     proba_A = (1 - tanh(diff)) / 2
     proba_B = 1 - proba_A
+    
     r = random()
-
     if r > proba_B:
         if affichage:
             print(f"`{A} à gagné avec un proba de {proba_A} contre {B}")
@@ -69,9 +70,8 @@ def match_phase_final_v2(A, B):
     str 
         Retourne une fstring du resultat du match
     """
-    équipes_gagnate = match(A, B)
-    
-    if équipes_gagnate == A:
+    équipes_gagnante = match(A, B)
+    if équipes_gagnante == A:
         return f"{A},gagné,{B},perdu"
     else:
         return f"{A},perdu,{B},gagné"
