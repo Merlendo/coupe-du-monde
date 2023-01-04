@@ -2,11 +2,11 @@
 # coding: utf-8
 
 import os
-from ex1 import creation_groupe
-from ex2 import match_phase_groupe
-from ex3 import comptage_points_groupe
-from ex4 import classement_poule
-from ex5 import huitième, quart, demi, petite_finale, finale, liste_phase_final
+from q1_création_groupe import creation_groupe
+from q2_matchs_groupe import match_phase_groupe
+from q3_points_groupe import comptage_points_groupe
+from q4_classement import classement_poule
+from q5_phase_finale import huitième, quart, demi, petite_finale, finale, liste_phase_final
 
 
 def supprime_dossiers():
