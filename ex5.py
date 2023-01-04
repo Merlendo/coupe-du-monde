@@ -69,7 +69,7 @@ def match_phase_final_v2(A, B):
     Returns
     -------
     str 
-        Retourne une fstring de l''
+        Retourne une fstring du resultat du match
     """
     équipes_gagnate = match(A, B)
     
@@ -191,7 +191,7 @@ def liste_phase_final(résultat_csv):
 
 def phase_finale(phase_précédente, phase_suivante):
     """
-    Prend le fichier csv de la phase présédente et créer le fichier csv   de la phase suivante
+    Prend le fichier csv de la phase présédente et créer le fichier csv de la phase suivante
     
     Parameters
     ----------
