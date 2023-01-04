@@ -11,14 +11,35 @@ from ex5 import huitième, quart, demi, petite_finale, finale, liste_phase_final
 
 
 def supprime_dossiers():
+    """
+    Supprimes les fichiers dans les dossiers Equipes, Matchs, Points, Phase Final
+
+    Returns
+    -------
+    None.
+
+    """
     liste_dossier = ["Equipes", "Matchs", "Points", "Phase Final"]
     for dossier in liste_dossier:
         for file in os.listdir(dossier):
             # print(f"{file} removed...")
             os.remove(f"{dossier}\{file}")
-
+        os.removedirs(dossier)
 
 def afficher_groupe(classement):
+    """
+    Affiche les resultats de poules
+
+    Parameters
+    ----------
+    classement : str
+                 Classement des équipes qualifiés en huitiéme.
+
+    Returns
+    -------
+    None.
+
+    """
     liste_lettres = ["A", "B", "C", "D", "E", "F", "G", "H"]
     for i in liste_lettres:
         print(f"\nGroupe {i}")
@@ -28,6 +49,19 @@ def afficher_groupe(classement):
 
 
 def affichage_phase_finale(nom_phase):
+    """
+    Affiche une phase finale
+
+    Parameters
+    ----------
+    nom_phase : str
+                Nom de la phase finale.
+
+    Returns
+    -------
+    None.
+
+    """
     print(f"{nom_phase.upper()}:\n")
     l = liste_phase_final(fr"Phase Final\résultats_{nom_phase}.csv")[1]
     for i in range(len(l)):
@@ -37,6 +71,14 @@ def affichage_phase_finale(nom_phase):
 
 
 def afficher_phases_finales():
+    """
+    Affiche toutes les phases finales en utilisant la fonction affichage_phase_finale
+
+    Returns
+    -------
+    None.
+
+    """
     liste_phase_finale = ["huitièmes", "quart", "demi", "3e_place", "finale"]
     for phase in liste_phase_finale:
         affichage_phase_finale(phase)
@@ -44,6 +86,14 @@ def afficher_phases_finales():
 
 
 def afficher_classement():
+    """
+    Affiche le podium de la coupe du monde
+
+    Returns
+    -------
+    None.
+
+    """
     premier = liste_phase_final(r"Phase Final\résultats_finale.csv")[0][0]
     troisième = liste_phase_final(r"Phase Final\résultats_3e_place.csv")[0][0]
 
@@ -59,23 +109,27 @@ def afficher_classement():
     print("Deuxième :", deuxième)
     print("Troisième :", troisième)
 
-
-try:
-    supprime_dossiers()
-except FileNotFoundError:
-    pass
-
-creation_groupe()
-match_phase_groupe()
-comptage_points_groupe()
-classement = classement_poule()
-huitième()
-quart()
-demi()
-petite_finale()
-finale()
-
-
-afficher_groupe(classement)
-afficher_phases_finales()
-afficher_classement()
+def main():
+    
+    try:
+        supprime_dossiers()
+    except FileNotFoundError:
+        pass
+ 
+    creation_groupe()
+    match_phase_groupe()
+    comptage_points_groupe()
+    classement = classement_poule()
+    huitième()
+    quart()
+    demi()
+    petite_finale()
+    finale()
+    
+    afficher_groupe(classement)
+    afficher_phases_finales()
+    afficher_classement()
+    
+    
+if __name__ == "__main__":
+    main()
