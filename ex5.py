@@ -6,8 +6,6 @@ from math import tanh
 
 # Implémentation poids équipes
 # ------------------------------------------------------------------------------------------------- #
-
-
 def liste_classement_équipes():
     """
     Ouvre le fichier classement_équipes.csv et retourne un dictionnaire.
