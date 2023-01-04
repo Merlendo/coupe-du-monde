@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
 import os
 from ex1 import creation_groupe
 from ex2 import match_phase_groupe
