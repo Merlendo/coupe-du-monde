@@ -7,13 +7,13 @@ import os
 
 def classement_poule():
     """
-    Classes équipes des poules.
+    Classes les équipes des poules.
     Classement : Nombre de points -> Nombre de points -> Différence de buts -> nombre de but
 
     Returns
     -------
     classement_poule : list
-                       Renvoie le classements de toutes les poules pour faciliter l'affichage.
+                       Renvoie le classement de toutes les poules pour faciliter l'affichage.
 
     """
     classement_poule = []
