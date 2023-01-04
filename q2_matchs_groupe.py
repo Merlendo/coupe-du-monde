@@ -8,7 +8,7 @@ from ex5 import match
 def match_phase_groupe():
     """
     Ouvre les fichiers équipes_groupe.csv.
-    Créer les matches possible du groupe en leurs attibuants un score de 0 à 3.
+    Créer les matches possibles du groupe en leurs attibuants un score de 0 à 3.
 
     Returns
     -------
