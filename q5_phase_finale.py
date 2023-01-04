@@ -13,7 +13,7 @@ def liste_classement_équipes():
     Returns
     -------
     dict
-        Dictionnaire contenant la valeur de chaques équipes.
+        Dictionnaire contenant la valeur de chaque équipe.
     """
     with open("classement_équipes.csv", "r", encoding="utf8") as f:
         l = [[line.strip().split(",")[0], float(line.strip().split(",")[1])]
@@ -63,12 +63,12 @@ def match(A, B, affichage=False):
     
 def match_phase_final_v2(A, B):
     """
-    Match en phase finales
+    Match en phase finale
 
     Returns
     -------
     str 
-        Retourne une fstring du resultat du match
+        Retourne une fstring du résultat du match
     """
     équipes_gagnante = match(A, B)
     if équipes_gagnante == A:
@@ -92,7 +92,7 @@ def match_phase_final(équipe_1, équipe_2):
     Returns
     -------
     str
-        Retourne une f string.
+        Retourne une f string du résultat du match
     """
     choix = randint(0, 1)
     if choix == 0:
@@ -145,7 +145,7 @@ def liste_huitième_triée():
     Returns
     -------
     list
-        Renvoi la listes des équipes qualifiées au huitième dans le bonne ordre.
+        Renvoi la listes des équipes qualifiées au huitième dans le bon ordre.
 
     """
     équipes_huitième = liste_huitième()
