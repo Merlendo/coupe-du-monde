@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import os
-from ex5 import match
+from q5_phase_finale.py import match
 
 
 def match_phase_groupe():
