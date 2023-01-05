@@ -130,7 +130,7 @@ def liste_huitième():
     Returns
     -------
     list
-        Retourn la listes des équipes qualifiés.
+        Retourn la liste des équipes qualifiées.
 
     """
     with open("Phase Final\équipes_qualifiés.csv", "r", encoding="utf8") as fichier_qualifié:
@@ -145,7 +145,7 @@ def liste_huitième_triée():
     Returns
     -------
     list
-        Renvoi la listes des équipes qualifiées au huitième dans le bon ordre.
+        Renvoi la liste des équipes qualifiées au huitième dans le bon ordre.
 
     """
     équipes_huitième = liste_huitième()
@@ -177,7 +177,7 @@ def liste_phase_final(résultat_csv):
     Returns
     -------
     list
-        Listes des équipes qualifiés.
+        Liste des équipes qualifiés.
     équipes : list
         Liste des lignes du fichier csv.
 
